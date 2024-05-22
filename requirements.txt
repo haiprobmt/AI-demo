@@ -4,7 +4,6 @@ yfinance
 pandas-datareader
 prophet
 openai
-base64
 html
 io
 re
