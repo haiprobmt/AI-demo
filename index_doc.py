@@ -1,38 +1,43 @@
-# import base64
+import base64
 import html
 import io
 import re
 import time
-import streamlit as st
+
 import openai
 from azure.ai.formrecognizer import DocumentAnalysisClient
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import AzureDeveloperCliCredential
 from azure.search.documents import SearchClient
+from azure.search.documents.indexes import SearchIndexClient
+
 from azure.storage.blob import BlobServiceClient, ContentSettings
 from pypdf import PdfReader, PdfWriter
 from tenacity import retry, stop_after_attempt, wait_random_exponential
+from azure.identity import DefaultAzureCredential
+
+from datetime import datetime
 from io import BytesIO
 import os
 
 # Replace these with your own values, either in environment variables or directly here
-AZURE_SEARCH_SERVICE = st.secrets.AZURE_SEARCH_SERVICE
-AZURE_SEARCH_INDEX = st.secrets.AZURE_SEARCH_INDEX
+AZURE_SEARCH_SERVICE = "search-sanderstrothmann"
+AZURE_SEARCH_INDEX = "index-demo"
 # AZURE_SEARCH_INDEX_1 = "vector-1715913242600"
-AZURE_OPENAI_SERVICE = st.secrets.AZURE_OPENAI_SERVICE
-AZURE_OPENAI_CHATGPT_DEPLOYMENT = st.secrets.AZURE_OPENAI_CHATGPT_DEPLOYMENT
-AZURE_SEARCH_API_KEY = st.secrets.AZURE_SEARCH_API_KEY
-AZURE_OPENAI_EMB_DEPLOYMENT = st.secrets.AZURE_OPENAI_EMB_DEPLOYMENT
+AZURE_OPENAI_SERVICE = "cog-kguqugfu5p2ki"
+AZURE_OPENAI_CHATGPT_DEPLOYMENT = "chat"
+AZURE_SEARCH_API_KEY = "i7F5uuUzXR8KCZ58o4r3aZAr9QG5dDp3erOLgz6kb9AzSeAabEHy"
+AZURE_OPENAI_EMB_DEPLOYMENT = "embedding"
 
-AZURE_CLIENT_ID = st.secrets.AZURE_CLIENT_ID
-AZURE_CLIENT_SECRET = st.secrets.AZURE_CLIENT_SECRET
-AZURE_TENANT_ID = st.secrets.AZURE_TENANT_ID
+AZURE_CLIENT_ID = "c4642a73-05e3-4a68-8228-7d241ba8d6e6"
+AZURE_CLIENT_SECRET = "I_F8Q~MhKD9fCfT9725j9mCad39G6bpwVpolAb.f"
+AZURE_TENANT_ID = "667439c9-20b5-4283-bd7b-fb6b3099d221"
 AZURE_SUBSCRIPTION_ID = os.environ.get("AZURE_SUBSCRIPTION_ID")
 
-AZURE_STORAGE_ACCOUNT = st.secrets.AZURE_STORAGE_ACCOUNT
-storagekey = st.secrets.storagekey
-formrecognizerservice = st.secrets.formrecognizerservice
-formrecognizerkey = st.secrets.formrecognizerkey
+AZURE_STORAGE_ACCOUNT = "sasanderstrothmann"
+storagekey = "QtoEp5hl3aIWHdkTO1Q8I4R30M5lNnrKsSHjkuAL6BMKvf03Vh6BJfJ5RWEG7hlAGRRu3/pvK+Kx+AStgTMMQQ=="
+formrecognizerservice = "pick-ai-doc-intel-version-2"
+formrecognizerkey = "e739eef01ab34d46b16bb69e879a14b6"
 verbose = True
 novectors = True
 remove = True
