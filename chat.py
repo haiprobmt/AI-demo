@@ -5,8 +5,6 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import QueryType
 from azure.core.credentials import AzureKeyCredential
 import re
-from io import BytesIO
-import pandas as pd
 import json
 import tiktoken
 from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPermissions
