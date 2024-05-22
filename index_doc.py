@@ -9,14 +9,9 @@ from azure.ai.formrecognizer import DocumentAnalysisClient
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import AzureDeveloperCliCredential
 from azure.search.documents import SearchClient
-from azure.search.documents.indexes import SearchIndexClient
-
 from azure.storage.blob import BlobServiceClient, ContentSettings
 from pypdf import PdfReader, PdfWriter
 from tenacity import retry, stop_after_attempt, wait_random_exponential
-from azure.identity import DefaultAzureCredential
-
-from datetime import datetime
 from io import BytesIO
 import os
 
