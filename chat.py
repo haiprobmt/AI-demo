@@ -33,11 +33,11 @@ AZURE_TENANT_ID = st.secrets.AZURE_TENANT_ID
 AZURE_SUBSCRIPTION_ID = os.environ.get("AZURE_SUBSCRIPTION_ID")
 
 # # Used by the OpenAI SDK
-openai.api_base = f"https://{AZURE_OPENAI_SERVICE}.openai.azure.com"
+openai.api_base = st.secrets.openai_api_base
 openai.api_version = "2023-09-01-preview"
 # # Comment these two lines out if using keys, set your API key in the OPENAI_API_KEY environment variable and set openai.api_type = "azure" instead
 openai.api_type = "azure"
-openai.api_key = st.secrets.api_key
+openai.api_key = st.secrets.openai_api_key
 
 storage_connection_string = st.secrets.storage_connection_string
 # container_name = "conversation"
