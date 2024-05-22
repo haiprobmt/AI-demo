@@ -14,7 +14,7 @@ azure.ai.formrecognizer
 azure.core.credentials
 azure.identity
 azure.search.documents
-azure.storage.blob
+azure-storage-blob==12.14.1
 pypdf
 tenacity
 os
