@@ -3,8 +3,7 @@ from chat import (
     search_demo, send_message, 
     load_conversation, delete_conversation, 
     get_blob_url_with_sas, upload_to_blob_storage, 
-    blob_name_from_file_page, get_document_text, 
-    index_sections, upload_conversation_to_blob)
+    upload_conversation_to_blob)
 import openai
 import re
 import index_doc
