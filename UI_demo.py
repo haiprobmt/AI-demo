@@ -19,7 +19,13 @@ st.title('Deeeplabs Demo Chatbot')
 
 col1, col2, col3 = st.columns([1, 1, 1])
 with col3:
-    st.button('Transcription Mode', use_container_width=True)
+    # Transcription_Mode = st.button('Transcription Mode', use_container_width=True)
+    # if Transcription_Mode:
+    st.markdown("""
+    <a href="https://notebuddyview.z23.web.core.windows.net/" target="_blank">
+    <button style='margin: 10px; padding: 10px; background-color: #FFFFFF; color: black; border: curve; cursor: pointer;'>Transcription Mode</button>
+    </a>
+    """, unsafe_allow_html=True)
 
 logo_url = get_blob_url_with_sas('dl-logo-hamburger.png', "image")
 st.sidebar.image(logo_url, width=200)
