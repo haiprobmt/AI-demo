@@ -1,15 +1,10 @@
 import os
 import openai
-from azure.identity import DefaultAzureCredential, AzureDeveloperCliCredential
+from azure.identity import AzureDeveloperCliCredential
 from azure.search.documents import SearchClient
 from azure.search.documents.models import QueryType
 from azure.core.credentials import AzureKeyCredential
-from azure.cosmos import CosmosClient
-from azure.keyvault.secrets import SecretClient
 import re
-from docx import Document
-from io import BytesIO
-import pandas as pd
 import json
 import tiktoken
 from azure.storage.blob import BlobServiceClient, generate_blob_sas, BlobSasPermissions
@@ -20,7 +15,6 @@ import html
 import io
 from azure.ai.formrecognizer import DocumentAnalysisClient
 # from tenacity import retry, stop_after_attempt, wait_random_exponential
-import psycopg2
 import tempfile
 
 # Replace these with your own values, either in environment variables or directly here

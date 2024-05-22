@@ -5,22 +5,8 @@ from chat import (
     get_blob_url_with_sas, upload_to_blob_storage, 
     blob_name_from_file_page, get_document_text, 
     index_sections, upload_conversation_to_blob)
-import os
 import openai
-from azure.identity import DefaultAzureCredential
-from azure.search.documents import SearchClient
-from azure.search.documents.models import QueryType
-from azure.core.credentials import AzureKeyCredential
-from azure.cosmos import CosmosClient
-from azure.keyvault.secrets import SecretClient
-from azure.storage.blob import BlobServiceClient
 import re
-from docx import Document
-from io import BytesIO
-import pandas as pd
-import json
-import tiktoken
-from docx.shared import Pt
 import index_doc
 
 # Initialize conversation
